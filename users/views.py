@@ -38,7 +38,7 @@ class CustomProviderAuthView(ProviderAuthView):
 
         return response
 
-class CustomerTokenObtainPairView(TokenObtainPairView):
+class CustomTokenObtainPairView(TokenObtainPairView):
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
 
@@ -66,7 +66,7 @@ class CustomerTokenObtainPairView(TokenObtainPairView):
             )
 
         return response
-    
+
 class CustomTokenRefreshView(TokenRefreshView):
     def post(self, request, *args, **kwargs):
         refresh_token = request.COOKIES.get('refresh')
@@ -99,7 +99,7 @@ class CustomTokenVerifyView(TokenVerifyView):
             request.data['token'] = access_token
 
         return super().post(request, *args, **kwargs)
-    
+
 class LogoutView(APIView):
     def post(self, request, *args, **kwargs):
         response = Response(status=status.HTTP_204_NO_CONTENT)
